@@ -10,11 +10,11 @@ function formatDateShort($dateStr) {
     return $formatter->format($date);
 }
 
-// Récupération des camps "Ados" (ID = 1)
+// Récupération des camps "Jeunes Pros / 18-35 ans" (ID = 2)
 $sql = "
     SELECT c.* FROM camps c
     JOIN camp_category cc ON c.id = cc.camp_id
-    WHERE cc.category_id = 1 
+    WHERE cc.category_id = 2 
     AND c.supprime = 0 
     AND c.date_debut >= CURDATE()
     ORDER BY c.date_debut ASC
@@ -27,7 +27,7 @@ $camps = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10-17 ans - PaJe</title>
+    <title>18-35 ans - PaJe</title>
     <link rel="icon" type="image/png" href="https://github.com/Cyprdu/PaJe/blob/main/img/favico.png?raw=true">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,8 +41,9 @@ $camps = $stmt->fetchAll();
         .font-regular { font-family: 'RobotoRegular', sans-serif; }
         
         .hero-category {
-            /* MODIFICATION ICI : Opacité passée de 0.9 à 0.4 pour mieux voir l'image */
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.4) 0%, rgba(185, 28, 28, 0.4) 100%), url('https://github.com/Cyprdu/PaJe/blob/main/img/ado.png?raw=true');
+            /* MODIFICATION ICI : Assurez-vous d'avoir une image appropriée pour les 18-35 ans */
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.4) 0%, rgba(185, 28, 28, 0.4) 100%), url('https://github.com/Cyprdu/PaJe/blob/main/img/pro.png?raw=true');
+            /* Si l'image jeunepro.png n'existe pas, remettez ado.png ou changez le lien */
             background-size: cover;
             background-position: center;
         }
@@ -62,8 +63,8 @@ $camps = $stmt->fetchAll();
         </button>
 
         <div class="max-w-4xl mx-auto px-4 mt-8">
-            <h1 class="font-display text-5xl md:text-7xl mb-4 drop-shadow-lg">10-17 ans</h1>
-            <p class="text-xl md:text-2xl font-light opacity-100 drop-shadow-md">Collégiens & Lycéens</p>
+            <h1 class="font-display text-5xl md:text-7xl mb-4 drop-shadow-lg">18-35 ans</h1>
+            <p class="text-xl md:text-2xl font-light opacity-100 drop-shadow-md">Jeunes Adultes, Étudiants & Jeunes Pros</p>
         </div>
     </header>
 
@@ -74,25 +75,58 @@ $camps = $stmt->fetchAll();
             <div class="lg:col-span-4 space-y-8">
                 
                 <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-red-600">
-                    <h2 class="font-display text-3xl text-red-600 mb-4">Tu as entre 10 et 17 ans ?</h2>
+                    <h2 class="font-display text-3xl text-red-600 mb-4">Tu as entre 18 et 35 ans ?</h2>
+                    
+                    <p class="text-gray-700 mb-4 leading-relaxed font-semibold">
+                        Que tu sois étudiant, en début de vie professionnelle, en famille ou simplement en chemin spirituel, cette rubrique est faite pour toi.
+                    </p>
+
                     <p class="text-gray-700 mb-4 leading-relaxed">
-                        Tu as envie de mieux te connaître et d’apprendre à connaître Jésus ?
-                        Tu veux vivre quelque chose de vrai, de profond, de joyeux ?
+                        Tu cherches un lieu où vivre ta foi, te poser, rencontrer d’autres jeunes adultes et grandir dans ta vie spirituelle ?
                     </p>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        Viens vivre des temps forts, rencontrer d'autres jeunes comme toi, découvrir et rencontrer Jésus, et te construire dans la foi, la joie et l'amitié sous le regard de l’Esprit Saint !
-                    </p>
-                    <p class="text-gray-600 text-sm italic border-l-4 border-red-200 pl-4">
-                        Que tu sois déjà croyant ou que tu te poses encore plein de questions, tu es le bienvenu. Nos propositions sont faites pour t’aider à grandir, à te découvrir et à te rapprocher de Dieu, à ton rythme.
+
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 mb-6">
+                        <h3 class="font-bold text-red-800 mb-2">Notre pédagogie</h3>
+                        <p class="text-sm text-gray-700">
+                            C’est de t’inviter à te mettre au service des jeunes et entrer dans le corps des animateurs. Nous t’invitons à mettre en service tes talents, tes charismes et tous les dons que Dieu t’a confiés.
+                        </p>
+                    </div>
+
+                    <h3 class="font-display text-xl text-gray-800 mb-3">Pourquoi venir ?</h3>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-red-500 mt-1"></i>
+                            <span>Pour rencontrer d’autres jeunes adultes qui partagent ta foi ou tes questionnements.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-red-500 mt-1"></i>
+                            <span>Pour approfondir ta relation avec Dieu et te poser dans un chemin spirituel.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-red-500 mt-1"></i>
+                            <span>Pour donner du sens à ta vie, ton travail, tes engagements.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-red-500 mt-1"></i>
+                            <span>Pour trouver un équilibre entre foi, vie personnelle et responsabilités.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-red-500 mt-1"></i>
+                            <span>Pour t’engager dans l’Église et la société, avec confiance et maturité.</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-600 text-sm italic border-t pt-4 border-gray-100">
+                        Que tu sois déjà ancré dans la foi ou que tu sois curieux de la découvrir, tu es le bienvenu. Ici, chacun avance à son rythme, dans le respect et la richesse des parcours variés.
                     </p>
                 </div>
 
                 <div class="bg-red-50 p-6 rounded-xl border border-red-100 text-center">
                     <i class="fas fa-quote-left text-red-300 text-2xl mb-2"></i>
                     <p class="font-display text-xl text-red-800 mb-2">
-                        « Ne crains pas, dit le Seigneur, je t’ai appelé par ton nom, parce que tu as du prix à mes yeux, que tu as de la valeur et moi je t’aime »
+                        « Exultant de joie, vous puiserez les eaux aux sources du salut. »
                     </p>
-                    <p class="text-sm text-red-600 font-bold">(Is 43,1;4)</p>
+                    <p class="text-sm text-red-600 font-bold">(Is 12,3)</p>
                 </div>
             </div>
 
@@ -109,7 +143,8 @@ $camps = $stmt->fetchAll();
                 <?php if(count($camps) > 0): ?>
                     <div class="grid md:grid-cols-2 gap-6">
                         <?php foreach($camps as $camp): 
-                            $img = !empty($camp['image_couverture']) ? '../'.$camp['image_couverture'] : 'https://github.com/Cyprdu/PaJe/blob/main/img/ado.png?raw=true';
+                            // Image par défaut si vide (adapter le nom de l'image par défaut si besoin)
+                            $img = !empty($camp['image_couverture']) ? '../'.$camp['image_couverture'] : 'https://github.com/Cyprdu/PaJe/blob/main/img/jeunepro.png?raw=true';
                         ?>
                         <article class="bg-white rounded-xl shadow-lg overflow-hidden camp-card transition duration-300 flex flex-col h-full border border-gray-100 group">
                             <div class="h-48 overflow-hidden relative">
@@ -149,7 +184,7 @@ $camps = $stmt->fetchAll();
                             <i class="far fa-calendar-times"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Aucun événement pour le moment</h3>
-                        <p class="text-gray-500">Reviens vite, de nouvelles dates seront bientôt ajoutées pour les 10-17 ans !</p>
+                        <p class="text-gray-500">Reviens vite, de nouvelles dates seront bientôt ajoutées pour les 18-35 ans !</p>
                     </div>
                 <?php endif; ?>
             </div>
